@@ -4,19 +4,19 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Switch - Rent Designer Jewelry &amp; Handbags From $59/Month</title>
 
-    <!-- 1. PRECONNECT TO CDN (Speeds up image download by opening the connection early) -->
+    <!-- 1. PRECONNECT -->
     <link rel="preconnect" href="https://d3r0047dgcfhfo.cloudfront.net" crossorigin>
+    <link rel="preconnect" href="https://cdn.segment.com" crossorigin>
 
     <link rel="preload" href="SofiaPro.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="icon" href="https://joinswitch.com/images/favicon.png?38bb7074408eb8a4d54a53afa58dbb5e" inertia="">
     <meta name="description" content="Switch lets members rent authentic luxury designer jewelry &amp; handbags through its subscriptions, which start at $59/month. Access Chanel, Hermes, Louis Vuitton, Gucci, &amp; more." inertia="description">
 
-    <!-- 2. PRELOAD HERO IMAGES (Desktop and Mobile correctly separated by media queries) -->
+    <!-- 2. PRELOAD HERO IMAGES -->
     <link rel="preload" as="image" fetchpriority="high" href="https://d3r0047dgcfhfo.cloudfront.net/desktopHomeBanner2.webp" media="(min-width: 769px)" type="image/webp">
     <link rel="preload" as="image" fetchpriority="high" href="https://d3r0047dgcfhfo.cloudfront.net/MobileHomeBanner2.webp" media="(max-width: 768px)" type="image/webp">
 
-    <!-- Essential GTM only in the head (Heavy tracking moved to the bottom) -->
-    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-P8KZJWZ"></script>
+    <!-- 3. GOOGLE TAG MANAGER (Base Init Only) -->
     <script>
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P8KZJWZ');
     </script>
@@ -74,7 +74,6 @@
         /* Hero Section */
         #luxury-hero-section { position: relative; width: 100%; min-height: 96vh; display: flex; align-items: flex-end; overflow: hidden; font-family: 'Sofia Pro', Arial, sans-serif; }
         
-        /* Applied picture tag handling */
         picture.hero-background-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
         .hero-background-image { width: 100%; height: 100%; object-fit: cover; }
         
@@ -143,7 +142,7 @@
 </header>
 
 <section id="luxury-hero-section">
-    <!-- 3. OPTIMIZED PICTURE TAG (Natively swaps images without JS, set to eager & sync for instant paint) -->
+    <!-- Natively swaps images without JS, set to eager & sync for instant paint -->
     <picture class="hero-background-wrapper">
         <source media="(min-width: 769px)" srcset="https://d3r0047dgcfhfo.cloudfront.net/desktopHomeBanner2.webp" type="image/webp">
         <img src="https://d3r0047dgcfhfo.cloudfront.net/MobileHomeBanner2.webp" alt="Luxury Accessories Background" class="hero-background-image" fetchpriority="high" loading="eager" decoding="sync">
@@ -337,7 +336,6 @@
             <div class="footer-social-group">
                 <span class="social-label">Follow us on</span>
                 <div class="social-icons">
-                    <!-- Note: Restore your original inline SVGs here if desired -->
                     <a href="https://www.instagram.com/switch/" target="_blank" rel="noopener noreferrer" class="social-icon-link">IG</a>
                     <a href="https://www.facebook.com/Switch" target="_blank" rel="noopener noreferrer" class="social-icon-link">FB</a>
                     <a href="https://www.pinterest.com/joinswitch/" target="_blank" rel="noopener noreferrer" class="social-icon-link">PIN</a>
@@ -348,7 +346,7 @@
     </div>
 </footer>
 
-<!-- UI Interaction Scripts -->
+<!-- UI Scripts -->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", () => {
         const track = document.getElementById('sliderTrack');
@@ -413,48 +411,29 @@
             window.addEventListener('touchstart', handleTrigger, { once: true });
         }
     });
-
-    // NOTE: Removed the DOMContentLoaded block that manually deleted desktop/mobile images.
-    // The <picture> tag now handles this natively, which is instantly evaluated by the browser.
 </script>
 
 <!-- ========================================== -->
-<!-- DEFERRED TRACKING SCRIPTS                  -->
-<!-- Moved from <head> to prioritize LCP        -->
+<!-- DEFERRED / DEDUPLICATED TRACKING INIT      -->
 <!-- ========================================== -->
 
-<!-- Segment Tracking -->
-<script type="text/javascript" defer data-global-segment-analytics-key="analytics" src="https://cdn.segment.com/analytics.js/v1/gC6hOjYsr3oCyoLUB8swJsKczrhAqlbD/analytics.min.js"></script>
-<script type="text/javascript" defer src="https://cdn.segment.com/next-integrations/integrations/vendor/commons.59560acdd69ed701c941.js.gz"></script>
-<script type="text/javascript" defer src="https://cdn.segment.com/next-integrations/integrations/google-tag-manager/2.5.3/google-tag-manager.dynamic.js.gz"></script>
-<script type="text/javascript" defer src="https://cdn.segment.com/next-integrations/integrations/facebook-pixel/2.11.5/facebook-pixel.dynamic.js.gz"></script>
-<script type="text/javascript" defer src="https://cdn.segment.com/next-integrations/integrations/visual-tagger/0.3.5/visual-tagger.dynamic.js.gz"></script>
-<script>
+<!-- Segment Base Init -->
+<script type="text/javascript">
     !function(){var i="analytics",analytics=window[i]=window[i]||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];analytics.factory=function(e){return function(){if(window[i].initialized)return window[i][e].apply(window[i],arguments);var n=Array.prototype.slice.call(arguments);if(["track","screen","alias","group","page","identify"].indexOf(e)>-1){var c=document.querySelector("link[rel='canonical']");n.push({__t:"bpc",c:c&&c.getAttribute("href")||void 0,p:location.pathname,u:location.href,s:location.search,t:document.title,r:document.referrer})}n.unshift(e);analytics.push(n);return analytics}};for(var n=0;n<analytics.methods.length;n++){var key=analytics.methods[n];analytics[key]=analytics.factory(key)}analytics.load=function(key,n){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.setAttribute("data-global-segment-analytics-key",i);t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r);analytics._loadOptions=n};analytics._writeKey="gC6hOjYsr3oCyoLUB8swJsKczrhAqlbD";;analytics.SNIPPET_VERSION="5.2.0";
     analytics.load("gC6hOjYsr3oCyoLUB8swJsKczrhAqlbD");
     analytics.page();
     }}();
 </script>
 
-<!-- Other Tagging -->
-<script type="text/javascript" defer src="https://www.googletagmanager.com/gtag/js?id=AW-93658813215&amp;cx=c&amp;gtm=4e63r2h1"></script>
-<script type="text/javascript" defer src="https://www.googletagmanager.com/gtag/js?id=G-W76WBT5SD2&amp;cx=c&amp;gtm=4e63r2"></script>
-<script type="text/javascript" defer src="https://www.google-analytics.com/analytics.js"></script>
-
-<!-- Meta / Facebook -->
-<script defer src="https://connect.facebook.net/en_US/fbevents.js"></script>
-<script defer src="https://connect.facebook.net/signals/config/787344324967728?v=2.9.285&amp;r=stable&amp;domain=js3.joinswitch.com&amp;hme=12c8cdc903a327d6c396005880a21a0a6c955fe6b6fb47b10c9022424ec9b3ee"></script>
-<script type="text/javascript">!function(b,e,f,g,a,c,d){b.fbq||(a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version="2.0",a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d))}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init","787344324967728");fbq("track","PageView");</script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=787344324967728&amp;ev=PageView&amp;noscript=1"></noscript>
-
-<!-- TikTok Analytics -->
-<script type="text/javascript">!function(b,f,e){b.TiktokAnalyticsObject=e;var a=b[e]=b[e]||[];a.methods="page track identify instances debug on off once ready alias group enableCookie disableCookie".split(" ");a.setAndDefer=function(c,d){c[d]=function(){c.push([d].concat(Array.prototype.slice.call(arguments,0)))}};for(b=0;b<a.methods.length;b++)a.setAndDefer(a,a.methods[b]);a.instance=function(c){c=a._i[c]||[];for(var d=0;d<a.methods.length;d++)a.setAndDefer(c,a.methods[d]);return c};a.load("C7FT2TI0VTGLO2V4FFJ015");a.page()}(window,document,"ttq");</script>
+<!-- TikTok Base Init -->
+<script type="text/javascript">
+    !function(b,f,e){b.TiktokAnalyticsObject=e;var a=b[e]=b[e]||[];a.methods="page track identify instances debug on off once ready alias group enableCookie disableCookie".split(" ");a.setAndDefer=function(c,d){c[d]=function(){c.push([d].concat(Array.prototype.slice.call(arguments,0)))}};for(b=0;b<a.methods.length;b++)a.setAndDefer(a,a.methods[b]);a.instance=function(c){c=a._i[c]||[];for(var d=0;d<a.methods.length;d++)a.setAndDefer(c,a.methods[d]);return c};a.load("C7FT2TI0VTGLO2V4FFJ015");a.page()}(window,document,"ttq");
+</script>
 
 <!-- Geo Location API -->
-<script type="text/javascript">(function(){var b=function(a){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:"geoDataReady",userCountry:a||"error"})};fetch("https://ip-api.com/json/?fields\x3dstatus,countryCode").then(function(a){return a.json()}).then(function(a){a&&a.status==="success"?b(a.countryCode):b("error")})["catch"](function(a){console.error("GTM Geo-IP Error:",a);b("error")})})();</script>
-
-<!-- DoubleClick Tracking -->
-<script type="text/javascript" defer src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/93658813215/?random=1774964649183&amp;cv=11&amp;fst=1774964649183&amp;bg=ffffff&amp;guid=ON&amp;async=1&amp;en=gtag.config&amp;gtm=45be63r2h1z8810912666za20gzb810912666zd810912666xec&amp;gcd=13l3l3l3l1l1&amp;dma=0&amp;tag_exp=0~115938466~115938468~116991817~117484252&amp;u_w=320&amp;u_h=582&amp;url=https%3A%2F%2Fjs3.joinswitch.com%2Flanding%2F&amp;frm=0&amp;tiba=Switch%20-%20Rent%20Designer%20Jewelry%20%26%20Handbags%20From%20%2459%2FMonth&amp;hn=www.googleadservices.com&amp;npa=0&amp;pscdl=noapi&amp;auid=1343532815.1774963821&amp;uaa=&amp;uab=64&amp;uafvl=Chromium%3B146.0.7680.165%7CNot-A.Brand%3B24.0.0.0%7CGoogle%2520Chrome%3B146.0.7680.165&amp;uamb=1&amp;uam=Nexus%205&amp;uap=Android&amp;uapv=6.0&amp;uaw=0&amp;data=event%3Dgtag.config&amp;rfmt=3&amp;fmt=4"></script>
+<script type="text/javascript">
+    (function(){var b=function(a){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:"geoDataReady",userCountry:a||"error"})};fetch("https://ip-api.com/json/?fields\x3dstatus,countryCode").then(function(a){return a.json()}).then(function(a){a&&a.status==="success"?b(a.countryCode):b("error")})["catch"](function(a){console.error("GTM Geo-IP Error:",a);b("error")})})();
+</script>
 
 <!-- ========================================== -->
 <!-- DEFERRED CSS (BELOW THE FOLD ONLY)         -->
